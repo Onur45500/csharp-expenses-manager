@@ -4,8 +4,9 @@
 
 @model csharp_expenses_manager.Models.Expense
 
-<form asp-controller="Home" asp-action="CreateOrEditForm">
-    <hidden class="form-control" placeholder="" asp-for="Id"/>
+<form  asp-controller="Home" asp-action="CreateOrEditForm">
+    <label>Id</label>
+    <input class="form-control" placeholder="" asp-for="Id"/>
 
     <label>Value</label>
     <input class="form-control" placeholder="" asp-for="Value" />

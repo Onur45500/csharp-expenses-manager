@@ -27,16 +27,43 @@ namespace csharp_expenses_manager.Controllers
             return View(allExpenses);
         }
 
-        public IActionResult CreateOrEdit()
+        public IActionResult CreateOrEdit(int? id)
         {
+            if(id != null)
+            {
+                var expense = _context.Expenses.SingleOrDefault(Expense => Expense.Id == id);
+
+                return View(expense);
+            }
+            
             return View();
+        }
+
+        public IActionResult DeleteExpense(int id)
+        {
+            var expense = _context.Expenses.SingleOrDefault(Expense => Expense.Id == id);
+
+            _context.Expenses.Remove(expense);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Expenses");
         }
 
         public IActionResult CreateOrEditForm(Expense model)
         {
-            _context.Expenses.Add(model);
+            if(model.Id == 0)
+            {
+                _context.Expenses.Add(model);
 
-            _context.SaveChanges();
+                _context.SaveChanges();
+            }
+            else
+            {
+                _context.Expenses.Update(model);
+
+                _context.SaveChanges();
+            }
             
             return RedirectToAction("Expenses");
         }
