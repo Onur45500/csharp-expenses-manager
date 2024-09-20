@@ -18,6 +18,11 @@ namespace csharp_expenses_manager.Controllers
             return View();
         }
 
+        public IActionResult Expenses()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
