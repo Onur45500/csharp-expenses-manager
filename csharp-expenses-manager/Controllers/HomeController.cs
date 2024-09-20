@@ -57,7 +57,7 @@ namespace csharp_expenses_manager.Controllers
 
         public IActionResult CreateOrEditForm(Expense model)
         {
-            if(model.Id == 0)
+            if(model.Id == null || model.Id == 0)
             {
                 _context.Expenses.Add(model);
 
