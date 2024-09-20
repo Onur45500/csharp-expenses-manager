@@ -24,6 +24,11 @@ namespace csharp_expenses_manager.Controllers
         public IActionResult Expenses()
         {
             var allExpenses = _context.Expenses.ToList();
+
+            var totalExpenses = allExpenses.Sum(x => x.Value);
+
+            ViewBag.TotalExpenses = totalExpenses;
+
             return View(allExpenses);
         }
 
