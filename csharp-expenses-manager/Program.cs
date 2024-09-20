@@ -1,3 +1,6 @@
+using csharp_expenses_manager.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace csharp_expenses_manager
 {
     public class Program
@@ -8,6 +11,10 @@ namespace csharp_expenses_manager
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<ExpensesContext>(options =>
+                options.UseInMemoryDatabase("ExpensesContextDb")
+            );
+
 
             var app = builder.Build();
 

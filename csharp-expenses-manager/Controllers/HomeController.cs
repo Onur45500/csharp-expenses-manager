@@ -1,5 +1,6 @@
 using csharp_expenses_manager.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace csharp_expenses_manager.Controllers
@@ -7,9 +8,11 @@ namespace csharp_expenses_manager.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ExpensesContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ExpensesContext context)
         {
+            _context = context;
             _logger = logger;
         }
 
@@ -21,6 +24,21 @@ namespace csharp_expenses_manager.Controllers
         public IActionResult Expenses()
         {
             return View();
+        }
+
+        public IActionResult CreateOrEdit()
+        {
+
+            return View();
+        }
+
+        public IActionResult CreateOrEditForm(Expense model)
+        {
+            _context.Expenses.Add(model);
+
+            _context.SaveChanges();
+            
+            return RedirectToAction("Expenses");
         }
 
         public IActionResult Privacy()
