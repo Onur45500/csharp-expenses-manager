@@ -5,14 +5,13 @@
 @model csharp_expenses_manager.Models.Expense
 
 <form asp-controller="Home" asp-action="CreateOrEditForm">
-    <label>Id</label>
-    <input class="form-control" placeholder="" asp-for="Id"/>
+    <hidden class="form-control" placeholder="" asp-for="Id"/>
 
     <label>Value</label>
     <input class="form-control" placeholder="" asp-for="Value" />
 
     <label>Description</label>
-    <input class="form-control" placeholder="" asp-for="Value" />
+    <input class="form-control" placeholder="" asp-for="Description" />
 
     <button type="submit">Ok</button>
 </form>
